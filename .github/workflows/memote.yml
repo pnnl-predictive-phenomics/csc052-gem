@@ -26,5 +26,5 @@ jobs:
     - name: Run memote on deployment branch
       env:
         HEAD_REF: ${{ github.ref_name }}
-      run: bash ./csc009/scripts/ghactions_deploy.sh
+      run: bash ./csc052/scripts/ghactions_deploy.sh
 
