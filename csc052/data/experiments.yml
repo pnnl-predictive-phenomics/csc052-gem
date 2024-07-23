@@ -12,9 +12,9 @@ essentiality:
   path: "essentiality/"
 growth:
   path: "growth/"
-#  experiments:
-#    biolog_carbon:
-#      medium: min_media_no_carbon
-#      filename: "biolog_carbon_microbacterium.csv"
-#      label: "no_carbon data"
+  experiments:
+    biolog_carbon:
+      medium: min_media_no_carbon
+      filename: "biolog_carbon_toyonensis.csv"
+      label: "no_carbon data"
 minimal_growth_rate: 0.05
