@@ -10,7 +10,7 @@ location=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /location/) print $2}' memote.
 git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git config --global user.name "${GITHUB_ACTOR}"
 
-if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc009" ]]; then
+if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc052" ]]; then
     echo "Untracked build."
     memote run --ignore-git
 		echo "Skip deploy."
