@@ -1,7 +1,20 @@
 version: "0.1"
 medium:
   path: "media/"
+  definitions:
+    whole_medium_no_carbon:
+      filename: "csc052C-less_media.csv"
+      label: "All medium metabolites except the ones with Carbon"
+    min_media_no_carbon:
+      filename: "min_medium_csc052C-less_media.csv"
+      label: "Minimal media with no carbon"
 essentiality:
   path: "essentiality/"
 growth:
   path: "growth/"
+  experiments:
+    biolog_carbon:
+      medium: min_media_no_carbon
+      filename: "biolog_carbon_toyonensis.csv"
+      label: "no_carbon data"
+minimal_growth_rate: 0.05

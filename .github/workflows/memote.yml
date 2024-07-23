@@ -3,7 +3,7 @@ name: memote
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   report:
