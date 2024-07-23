@@ -3,12 +3,15 @@ name: memote-diff
 on:
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   diff:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
     - uses: actions/checkout@v2
       with:
@@ -24,7 +27,7 @@ jobs:
       run: |
         model=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /model/) print $2}' memote.ini | tr -d ' ')
         deployment=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /deployment/) print $2}' memote.ini | tr -d ' ')
-        git show "origin/master:${model}" > "prev_${model}"
+        git show "origin/main:${model}" > "prev_${model}"
         memote report diff --filename "diff${GITHUB_SHA}.html" "$model" "prev_${model}"
         git checkout $deployment
         git pull
