@@ -14,7 +14,7 @@ echo "Deployment '${deployment}'"
 echo "Location '${location}'"
 echo "repository '${GITHUB_REPOSITORY}'"
 
-if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc052" ]]; then
+if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc052-gem" ]]; then
     echo "Untracked build."
     memote run --ignore-git
 		echo "Skip deploy."
@@ -45,6 +45,7 @@ memote report history --filename="${output}"
 
 # Check if the report file exists
 if [ -f "${output}" ]; then
+  git add "${snapshot_output}"
   git add "${output}"
   git commit -m "Github actions report # ${GITHUB_SHA}"
   git push --quiet "https://github.com/${GITHUB_REPOSITORY}.git" "${deployment}" > /dev/null
