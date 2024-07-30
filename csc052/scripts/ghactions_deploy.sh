@@ -31,6 +31,12 @@ else
 		echo "Start deploy to ${deployment}..."
 fi
 
+# Generate a snapshot report on the deployment branch.
+snapshot_output="snapshot_report.html"
+git checkout "${deployment}"
+echo "Generating snapshot report '${snapshot_output}'"
+memote report snapshot --filename="${snapshot_output}"
+
 # Generate the history report on the deployment branch.
 output="history_report.html"
 git checkout "${deployment}"

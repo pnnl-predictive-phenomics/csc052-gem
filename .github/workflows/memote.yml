@@ -22,7 +22,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip setuptools wheel 
-        python -m pip install memote==0.14.0 depinfo==1.7.0
+        python -m pip install memote==0.14.0 depinfo==1.7.0 numpy==1.26.4
     - name: Run memote on deployment branch
       env:
         HEAD_REF: ${{ github.ref_name }}
