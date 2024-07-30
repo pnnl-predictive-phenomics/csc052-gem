@@ -10,7 +10,11 @@ location=$(awk -F '=' '{if (! ($0 ~ /^;/) && $0 ~ /location/) print $2}' memote.
 git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 git config --global user.name "${GITHUB_ACTOR}"
 
-if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc052" ]]; then
+echo "Deployment '${deployment}'"
+echo "Location '${location}'"
+echo "repository '${GITHUB_REPOSITORY}'"
+
+if [[ "${GITHUB_EVENT_NAME}" == "pull_request" || "${GITHUB_REPOSITORY}" != "pnnl-predictive-phenomics/csc052-gem" ]]; then
     echo "Untracked build."
     memote run --ignore-git
 		echo "Skip deploy."
@@ -27,16 +31,26 @@ else
 		echo "Start deploy to ${deployment}..."
 fi
 
+# Generate a snapshot report on the deployment branch.
+snapshot_output="snapshot_report.html"
+git checkout "${deployment}"
+echo "Generating snapshot report '${snapshot_output}'"
+memote report snapshot --filename="${snapshot_output}"
+
 # Generate the history report on the deployment branch.
 output="history_report.html"
 git checkout "${deployment}"
 echo "Generating updated history report '${output}'."
 memote report history --filename="${output}"
 
-# Add, commit and push the files.
-git add "${output}"
-git commit -m "Github actions report # ${GITHUB_SHA}"
-git push --quiet "https://github.com/${GITHUB_REPOSITORY}.git" "${deployment}" > /dev/null
-
-echo "Memote report was generated at https://pnnl-predictive-phenomics/${GITHUB_REPOSITORY}"
-
+# Check if the report file exists
+if [ -f "${output}" ]; then
+  git add "${snapshot_output}"
+  git add "${output}"
+  git commit -m "Github actions report # ${GITHUB_SHA}"
+  git push --quiet "https://github.com/${GITHUB_REPOSITORY}.git" "${deployment}" > /dev/null
+  echo "Memote report was generated at https://pnnl-predictive-phenomics/${GITHUB_REPOSITORY}"
+else
+  echo "Error: Report file not found!"
+  exit 1
+fi
