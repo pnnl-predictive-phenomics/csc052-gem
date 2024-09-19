@@ -58,3 +58,19 @@ EX_dha_e,True,10
 EX_btd_RR_e,True,10
 EX_diact_e,False,10
 EX_R_actn_e,True,10
+EX_asp__L_e, True, 10
+EX_gln__L_e, True, 10
+EX_adn__e, True, 10
+EX_ser__L_e, True, 10
+EX_thr__L_e, True, 10
+EX_tym_e, False, 10
+EX_pyr_e, True, 10
+EX_ad_e, True, 10
+EX_trp__L_e, True, 10
+EX_glyclt_e, True, 10
+EX_glu__D_e, False, 10
+EX_erthrs_e, False, 10
+EX_gua_e, True, 10
+EX_gsn_e, True, 10
+EX_rbl__B_e, True, 10
+EX_urea_e, False, 10
