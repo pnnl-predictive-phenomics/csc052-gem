@@ -1,4 +1,4 @@
-# Organism-specific Genome-Scale Metabolic Model Continuous Validation with Memote
+# Bacillus Genome-Scale Metabolic Model Continuous Validation with Memote
 
 
 This is a Memote repository for a genome scale model of *Bacillus* (CSC052) that is part of the CarbStor community.
